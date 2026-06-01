@@ -1,20 +1,28 @@
 import random
-print(" WELOME TO THE DICE ROLL  GAME")
+choice = input("Do you want to start the game?(y/n)").lower()
+if choice == "y" :
 
-choice = input("Do You Want to start the game (y/n) : ")
-while choice :
-    True
-    choice = input("Do You Want to start the game (y/n) : ")
-    if choice == "y ":
-        game()
-    if choice == "n" :
-        break
+    player_choice = int(input("Enter the number from Dice (1 to 6) : "))
+    print("\n")
+    if player_choice > 6 :
+        print("Invalid choice !")
+    else:
+            options = [1,2,3,4,5,6]
+            computer_choice = random.choice(options)
 
-def game():
-    player_choice = int(input("Roll the dice (1 to 6 ) : "))
-    ch=[1,2,3,4,5,6]
-    computer_choice = random.choices(ch)
+            print(f"Player Choice is {player_choice}")
+            
+            print(f"Computer Choice is {computer_choice}")
+            result = [player_choice , computer_choice]
+            print(result)
+            if player_choice == computer_choice:
+                print("Match is tied")
 
-    return (player_choice,computer_choice)
-result = game()
-print(result)
+            elif player_choice > computer_choice:
+                print("Hurray ! Player won the match.")
+
+            else:
+                print(" Computer won the match !")
+
+else :
+    print("Exiting the game....")
