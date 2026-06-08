@@ -1,40 +1,69 @@
-
 import random
 
 def get_choices():
-    player_choice =input("Enter the user choice (rock,paper,scissors) :")
-    options = ["rock","paper","scissors"]
-    
+    player_choice = input("Enter your choice (rock, paper, scissors): ").lower()
+
+    options = ["rock", "paper", "scissors"]
+
+    if player_choice not in options:
+        print("Invalid choice!")
+        return None
+
     computer_choice = random.choice(options)
 
-    choices={"player":player_choice,"computer":computer_choice}
-    return choices
+    return {
+        "player": player_choice,
+        "computer": computer_choice
+    }
 
-def check_win(player,computer):
-    print("User choose = "+player)
-    print("Computer choose = "+computer)
-    
-    if (player == computer):
-        return "It is a TIE !"
-    
-    elif player =="rock" and computer == "scissors":
-        return "Rock brokes the scissors ! You Win !"
-    
+
+def check_win(player, computer):
+    print("User chose =", player)
+    print("Computer chose =", computer)
+
+    if player == computer:
+        return "It is a TIE!"
+
+    elif player == "rock" and computer == "scissors":
+        return "Rock breaks Scissors! You Win!"
+
     elif player == "rock" and computer == "paper":
-        return "Paper Grabs Rock ! Computer Win !"
-    
+        return "Paper covers Rock! Computer Wins!"
+
     elif player == "scissors" and computer == "rock":
-        return "Rock brokes the scissors ! Computer Win !"
+        return "Rock breaks Scissors! Computer Wins!"
 
     elif player == "scissors" and computer == "paper":
-        return "Scissor cuts the Paper ! You Win !"
+        return "Scissors cut Paper! You Win!"
+
     elif player == "paper" and computer == "scissors":
-        return "Scissor cuts the Paper ! Computer Win !"
+        return "Scissors cut Paper! Computer Wins!"
 
-    else :
-        return "Paper Grabs Rock ! You Win !"
+    else:
+        return "Paper covers Rock! You Win!"
 
-choices = get_choices()
 
-result = check_win(choices["player"],choices["computer"])
-print(result)
+while True:
+    print("""
+1. Start
+2. Exit
+""")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        choices = get_choices()
+
+        if choices:
+            result = check_win(
+                choices["player"],
+                choices["computer"]
+            )
+            print(result)
+
+    elif choice == "2":
+        print("Exiting the Playground!")
+        break
+
+    else:
+        print("Invalid choice!")
